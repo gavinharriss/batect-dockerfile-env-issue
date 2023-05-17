@@ -1,0 +1,27 @@
+config_variables:
+  secret_key:
+    description: Top secret key to inject as environment variable
+
+containers:
+  build-env: 
+    image: mcr.microsoft.com/dotnet/framework/sdk:4.8.1
+    volumes:
+      - local: .
+        container: c:\code
+    working_directory: c:\code
+
+  aspnet:
+    build_directory: . # Dockerfile at root
+    # build_args:
+    #   secret_key: "<{secret_key}"
+    environment:
+      SECRET_KEY: "<{secret_key}"
+
+tasks:
+  run:
+    description: Run project under IIS
+    run:
+      container: aspnet
+      ports:
+        - local: 7071
+          container: 80
