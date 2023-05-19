@@ -1,9 +1,8 @@
-# ARG secret_key
-
 FROM mcr.microsoft.com/dotnet/framework/sdk:4.8.1 AS build
-WORKDIR /app
+ARG secret_key
+ENV SECRET_KEY=$secret_key
 
-# ENV SECRET_KEY=${secret_key}
+WORKDIR /app
 
 COPY config/. ./
 COPY scripts/apply-configuration.ps1 ./scripts/

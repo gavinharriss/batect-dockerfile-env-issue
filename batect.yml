@@ -12,10 +12,10 @@ containers:
 
   aspnet:
     build_directory: . # Dockerfile at root
-    # build_args:
-    #   secret_key: "<{secret_key}"
-    environment:
-      SECRET_KEY: "<{secret_key}"
+    build_args:
+      secret_key: "<{secret_key}"
+    # environment:
+    #   SECRET_KEY: "<{secret_key}"
 
 tasks:
   run:
